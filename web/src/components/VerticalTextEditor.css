@@ -1,0 +1,258 @@
+.vertical-text-editor {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #1f2937;
+}
+
+.header-left h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.editor-stats {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.stat {
+  color: #4b5563;
+}
+
+.stat strong {
+  color: #1f2937;
+  margin-right: 0.25rem;
+}
+
+.editor-toolbar {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.toolbar-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.toolbar-button:hover:not(:disabled) {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3);
+}
+
+.toolbar-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.toolbar-button:disabled {
+  background: #d1d5db;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.toolbar-button.danger {
+  background: #ef4444;
+}
+
+.toolbar-button.danger:hover:not(:disabled) {
+  background: #dc2626;
+  box-shadow: 0 4px 6px rgba(239, 68, 68, 0.3);
+}
+
+.editor-container {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  min-height: 600px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+}
+
+.vertical-textarea {
+  width: 100%;
+  min-height: 560px;
+  border: none;
+  outline: none;
+  font-size: 1.125rem;
+  line-height: 2;
+  font-family: 'Hiragino Mincho ProN', 'Yu Mincho', 'YuMincho', 'ヒラギノ明朝 ProN W3', 'MS Mincho', serif;
+  resize: vertical;
+
+  /* 縦書きスタイル */
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+
+  /* テキストの流れ */
+  direction: rtl;
+
+  /* 文字間隔の調整 */
+  letter-spacing: 0.05em;
+
+  /* 行間の調整 */
+  padding: 1rem;
+
+  background: transparent;
+}
+
+.vertical-textarea::placeholder {
+  color: #9ca3af;
+  opacity: 0.8;
+}
+
+.vertical-textarea:focus {
+  outline: none;
+}
+
+.editor-footer {
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.editor-description {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* スクロールバーのスタイリング */
+.editor-container::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.editor-container::-webkit-scrollbar-track {
+  background: #f3f4f6;
+  border-radius: 0.75rem;
+}
+
+.editor-container::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 0.75rem;
+  border: 3px solid #f3f4f6;
+}
+
+.editor-container::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .vertical-text-editor {
+    padding: 1rem;
+  }
+
+  .editor-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .editor-stats {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .editor-container {
+    padding: 1rem;
+    min-height: 400px;
+  }
+
+  .vertical-textarea {
+    font-size: 1rem;
+    min-height: 360px;
+  }
+
+  .toolbar-button span {
+    display: none;
+  }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  .vertical-text-editor {
+    color: #f3f4f6;
+  }
+
+  .editor-header {
+    border-bottom-color: #374151;
+  }
+
+  .header-left {
+    color: #f3f4f6;
+  }
+
+  .stat {
+    color: #d1d5db;
+  }
+
+  .stat strong {
+    color: #f3f4f6;
+  }
+
+  .editor-container {
+    background: #1f2937;
+    border-color: #374151;
+  }
+
+  .vertical-textarea {
+    color: #f3f4f6;
+  }
+
+  .vertical-textarea::placeholder {
+    color: #6b7280;
+  }
+
+  .editor-footer {
+    border-top-color: #374151;
+  }
+
+  .editor-description {
+    color: #9ca3af;
+  }
+
+  .editor-container::-webkit-scrollbar-track {
+    background: #374151;
+  }
+
+  .editor-container::-webkit-scrollbar-thumb {
+    background: #4b5563;
+    border-color: #374151;
+  }
+
+  .editor-container::-webkit-scrollbar-thumb:hover {
+    background: #6b7280;
+  }
+}

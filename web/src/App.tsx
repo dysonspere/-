@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { Portfolio } from './services/Portfolio';
 import { PortfolioBuilder } from './components/PortfolioBuilder';
 import { SimulationDashboard } from './components/SimulationDashboard';
+import { VerticalTextEditor } from './components/VerticalTextEditor';
 import { TrendingUp } from 'lucide-react';
 import './App.css';
 
 function App() {
   const [portfolio, setPortfolio] = useState<Portfolio>(new Portfolio(10000000));
-  const [activeTab, setActiveTab] = useState<'builder' | 'simulation'>('builder');
+  const [activeTab, setActiveTab] = useState<'builder' | 'simulation' | 'editor'>('editor');
 
   const handlePortfolioChange = (newPortfolio: Portfolio) => {
     setPortfolio(newPortfolio);
@@ -31,6 +32,12 @@ function App() {
 
       <nav className="app-nav">
         <button
+          className={activeTab === 'editor' ? 'active' : ''}
+          onClick={() => setActiveTab('editor')}
+        >
+          縦書きエディタ
+        </button>
+        <button
           className={activeTab === 'builder' ? 'active' : ''}
           onClick={() => setActiveTab('builder')}
         >
@@ -45,7 +52,9 @@ function App() {
       </nav>
 
       <main className="app-main">
-        {activeTab === 'builder' ? (
+        {activeTab === 'editor' ? (
+          <VerticalTextEditor />
+        ) : activeTab === 'builder' ? (
           <PortfolioBuilder
             portfolio={portfolio}
             onPortfolioChange={handlePortfolioChange}
